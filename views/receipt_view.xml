@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="receipt_form_view" model="ir.ui.view">
+            <field name="name">projekti.receipt.form</field>
+            <field name="model">projekti.receipt</field>
+            <field name="arch" type="xml">
+                <form string="Receipt">
+                     <header>
+                        <button class="btn-primary" name="aprove" type="object" string="Confirm Receipt" states="draft"/>
+                        <button class="btn-primary" name="anullo" type="object" string="Delete Receipt" states="done"/>
+                        <button class="btn-primary" name="draft" type="object" string="Draft" states="cancel"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="receipt_no"/>
+                            <h1>
+                                <field name="receipt_no" placeholder="Receipt Number" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="date"  attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                                <field name="amount"/>
+                            </group>
+                            <group>
+                                <field name="customer_id" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="receipt_lines_page" string="Reservation">
+                                <field name="receipt_lines_ids" attrs="{'readonly':[('state', '!=', 'draft')]}">
+                                    <tree editable="bottom">
+                                        <field name="reservation_id"/>
+                                        <field name="amount"/>
+                                    </tree>
+                                    <form>
+                                         <group>
+                                             <group>
+                                                <field name="reservation_id"/>
+                                             </group>
+                                             <group>
+                                                 <field name="amount"/>
+                                             </group>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="receipt_tree_view" model="ir.ui.view">
+            <field name="name">projekti.receipt.tree</field>
+            <field name="model">projekti.receipt</field>
+            <field name="arch" type="xml">
+                <tree string="Receipt">
+                    <field name="receipt_no"/>
+                    <field name="customer_id"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="receipt_search_view" model="ir.ui.view">
+            <field name="name">projekti.receipt.search</field>
+            <field name="model">projekti.receipt</field>
+            <field name="arch" type="xml">
+                <search string="Receipt">
+                    <field name="customer_id"/>
+                    <field name="receipt_no"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="receipt_act_window" model="ir.actions.act_window">
+            <field name="name">Receipt</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">projekti.receipt</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Receipt.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Receipt" id="receipt_menu" parent="costumer_menu_root" action="receipt_act_window"/>
+
+    </data>
+</odoo>

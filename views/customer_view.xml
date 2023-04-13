@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="Customers_form_view" model="ir.ui.view">
+            <field name="name">projekti.customer.form</field>
+            <field name="model">projekti.customer</field>
+            <field name="arch" type="xml">
+                <form string="Customers">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="Firstname/Lastname"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="Personal Information">
+                                <field name="address"/>
+                                <field name="country"/>
+                                <field name="postcode"/>
+                                <field name="tel"/>
+                                <field name="gender"/>
+                            </group>
+                             <group string="Other Information">
+                                 <field name="num_reviews"/>
+                                 <field name="num_reservations"/>
+                                 <field name="loyalty_points"/>
+                                 <field name="discount_percentage" widget="percentage"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="Customers_tree_view" model="ir.ui.view">
+            <field name="name">projekti.customer.tree</field>
+            <field name="model">projekti.customer</field>
+            <field name="arch" type="xml">
+                <tree string="Customers">
+                    <field name="name"/>
+                    <field name="tel"/>
+                    <field name="gender"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="Customers_search_view" model="ir.ui.view">
+            <field name="name">projekti.customer.search</field>
+            <field name="model">projekti.customer</field>
+            <field name="arch" type="xml">
+                <search string="Customers">
+                    <field name="name"/>
+                    <field name="tel"/>
+                    <field name="gender"/>
+                    <field name="tel"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="Customers_act_window" model="ir.actions.act_window">
+            <field name="name">Customers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">projekti.customer</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Customers.
+                </p>
+            </field>
+        </record>
+
+        <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+        <menuitem id="costumer_menu_root" name="Costumers" sequence="10"/>
+        <menuitem name="Customers" id="Customers_menu" parent="costumer_menu_root" action="Customers_act_window"/>
+
+    </data>
+</odoo>

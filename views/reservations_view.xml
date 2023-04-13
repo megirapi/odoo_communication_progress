@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="reservations_form_view" model="ir.ui.view">
+            <field name="name">projekti.reservations.form</field>
+            <field name="model">projekti.reservations</field>
+            <field name="arch" type="xml">
+                <form string="Reservations">
+                    <header>
+                        <button class="btn-primary" name="confirm" type="object" string="Confirm Reservation" states="draft"/>
+                        <button class="btn-primary" name="cancel" type="object" string="Cancel Reservation" states="done"/>
+                        <button class="btn-primary" name="draft" type="object" string="Make Draft" states="cancel"/>
+<!--                        <button class="btn-primary" name="confirm_reservation" type="object" string="Confirm Reservation" states="draft"/>-->
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                    </header>
+                    <sheet>
+                        <group string="Reservation Details">
+                            <group>
+                                <field name="reservation_code"/>
+                                <field name="res_date"/>
+                                <field name="check_in"/>
+                                <field name="check_out"/>
+                            </group>
+                            <group>
+                                <field name="no_nights"/>
+                                <field name="adults"/>
+                                <field name="children"/>
+                            </group>
+                            <group>
+                                <field name="customer_id" options="{'no_create': True}"/>
+                                <field name="hotel_id"/>
+                            </group>
+                            <group>
+                                <field name="total_price"/>
+                                <field name="discount_percentage"/>
+                                <field name="res_type"/>
+                                <field name="special_requirements"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="room_page" string="Reservation Line">
+                                    <tree editable="bottom">
+                                        <field name="room_ids" domain="[('status', '=', 'ready')]"/>
+                                    </tree>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="reservations_tree_view" model="ir.ui.view">
+            <field name="name">projekti.reservations.tree</field>
+            <field name="model">projekti.reservations</field>
+            <field name="arch" type="xml">
+                <tree string="Reservations">
+                    <field name="res_date"/>
+                    <field name="total_price"/>
+                    <field name="res_type"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="reservations_search_view" model="ir.ui.view">
+            <field name="name">projekti.reservations.search</field>
+            <field name="model">projekti.reservations</field>
+            <field name="arch" type="xml">
+                <search string="Reservations">
+                    <field name="res_date"/>
+                    <field name="check_in"/>
+                    <field name="check_out"/>
+                    <field name="res_type"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="reservations_act_window" model="ir.actions.act_window">
+            <field name="name">Reservations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">projekti.reservations</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Reservations.
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem name="Reservations" id="reservations_menu" parent="hotels_root_menu" action="reservations_act_window"/>
+
+    </data>
+</odoo>

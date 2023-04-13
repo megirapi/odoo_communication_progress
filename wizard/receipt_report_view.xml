@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_receipt_report" model="ir.ui.view">
+            <field name="name">Receipt Report</field>
+            <field name="model">receipt.report</field>
+            <field name="arch" type="xml">
+                <form string="Receipt Report">
+                    <group>
+                        <field name="res_ids" widget="many2many_tags"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                    </group>
+                    <footer>
+                        <button name="print_report"
+                                string="Print"
+                                type="object"
+                                data-hotkey="q"
+                                class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel" data-hotkey="z"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_receipt_report" model="ir.actions.act_window">
+            <field name="name">Receipt report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">receipt.report</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_receipt_report"/>
+            <field name="target">new</field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="menu_receipt_report" name="Payment Report" parent="costumer_menu_root"
+                  action="action_receipt_report" sequence="100"/>
+
+    </data>
+</odoo>
+

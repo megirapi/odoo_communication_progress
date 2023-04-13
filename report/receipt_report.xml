@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="action_report_receipt" model="ir.actions.report">
+            <field name="name">Reservation</field>
+            <field name="model">projekti.receipt.lines</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">projekti.report_receipt</field>
+            <field name="report_file">projekti.report_receipt</field>
+        </record>
+
+        <template id="report_receipt">
+            <t t-set="data_report_landscape" t-value="True"/>
+            <t t-set="full_width" t-value="True"/>
+            <t t-call="web.html_container">
+                <h3 t-esc="n"></h3>
+                <div>
+                    <table class="table table-condensed table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Reservation</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="o">
+                                <tr>
+                                    <td>
+                                        <span t-esc="o['reservations']"></span>
+                                    </td>
+                                      <td>
+                                        <span t-esc="o['date']"></span>
+                                    </td>
+                                    <td>
+                                        <span t-esc="o['amount']"></span>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3"></td>
+                                <td>
+                                    <span t-esc="amount"></span>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </t>
+        </template>
+
+    </data>
+</odoo>
+
+

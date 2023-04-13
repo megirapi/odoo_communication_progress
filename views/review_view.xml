@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="review_form_view" model="ir.ui.view">
+            <field name="name">projekti.review.form</field>
+            <field name="model">projekti.review</field>
+            <field name="arch" type="xml">
+                <form string="Reviews">
+                    <sheet>
+<!--                        <div class="oe_title">-->
+<!--                            <label for="example_title"/>-->
+<!--                            <h1>-->
+<!--                                <field name="example_title" placeholder="Title"/>-->
+<!--                            </h1>-->
+<!--                        </div>-->
+                        <group>
+                            <field name="date"/>
+                            <field name="customer_id"/>
+                            <field name="hotel_id"/>
+                            <field name="rating" widget="priority"/>
+                        </group>
+                        <group></group>
+                        <hr/>
+                        <group>
+                            <field name="feedback"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="review_tree_view" model="ir.ui.view">
+            <field name="name">projekti.review.tree</field>
+            <field name="model">projekti.review</field>
+            <field name="arch" type="xml">
+                <tree string="Reviews">
+                    <field name="customer_id"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="review_search_view" model="ir.ui.view">
+            <field name="name">projekti.review.search</field>
+            <field name="model">projekti.review</field>
+            <field name="arch" type="xml">
+                <search string="Reviews">
+                    <field name="customer_id"/>
+                    <field name="date"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="review_act_window" model="ir.actions.act_window">
+            <field name="name">Reviews</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">projekti.review</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Reviews.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Reviews" id="review_menu" parent="hotels_root_menu" action="review_act_window"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="payment_form_view" model="ir.ui.view">
+            <field name="name">projekti.payment.form</field>
+            <field name="model">projekti.payment</field>
+            <field name="arch" type="xml">
+                <form string="Payments">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="payment_name"/>
+                            <h1>
+                                <field name="payment_name" placeholder="Payment Reference"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+<!--                                <field name="payment_name"/>-->
+                                <field name="reservation_id"/>
+                                <field name="payment_date"/>
+                                <field name="amount"/>
+                            </group>
+                            <group>
+                                <field name="payment_status"/>
+                                <field name="payment_method"/>
+                                <field name="customer_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="payment_tree_view" model="ir.ui.view">
+            <field name="name">projekti.payment.tree</field>
+            <field name="model">projekti.payment</field>
+            <field name="arch" type="xml">
+                <tree string="Payments">
+                    <field name="payment_date"/>
+                    <field name="payment_status"/>
+                    <field name="payment_method"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="payment_search_view" model="ir.ui.view">
+            <field name="name">projekti.payment.search</field>
+            <field name="model">projekti.payment</field>
+            <field name="arch" type="xml">
+                <search string="Payments">
+                    <field name="payment_date"/>
+                    <field name="payment_status"/>
+                    <field name="payment_method"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="payment_act_window" model="ir.actions.act_window">
+            <field name="name">Payments</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">projekti.payment</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Payments.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Payments" id="payment_menu" parent="costumer_menu_root" action="payment_act_window"/>
+
+    </data>
+</odoo>

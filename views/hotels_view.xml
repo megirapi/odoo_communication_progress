@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hotels_form_view" model="ir.ui.view">
+            <field name="name">projekti.hotels.form</field>
+            <field name="model">projekti.hotels</field>
+            <field name="arch" type="xml">
+                <form string="Hotels">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="Hotel Name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="address"/>
+                                <field name="country"/>
+                                <field name="city"/>
+                            </group>
+                            <group>
+                                <field name="no_rooms"/>
+                                <field name="tel"/>
+                                <field name="website"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="room_page" string="Rooms">
+                                <field name="room_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hotels_tree_view" model="ir.ui.view">
+            <field name="name">projekti.hotels.tree</field>
+            <field name="model">projekti.hotels</field>
+            <field name="arch" type="xml">
+                <tree string="Hotels">
+                    <field name="name"/>
+                    <field name="address"/>
+                    <field name="country"/>
+                    <field name="city"/>
+                    <field name="tel"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hotels_search_view" model="ir.ui.view">
+            <field name="name">projekti.hotels.search</field>
+            <field name="model">projekti.hotels</field>
+            <field name="arch" type="xml">
+                <search string="Hotels">
+                    <field name="address"/>
+                    <field name="country"/>
+                    <field name="city"/>
+                    <field name="no_rooms"/>
+                    <field name="tel"/>
+                    <field name="website"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="hotels_act_window" model="ir.actions.act_window">
+            <field name="name">hotels</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">projekti.hotels</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new hotels.
+                </p>
+            </field>
+        </record>
+
+        <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+        <menuitem id="hotels_root_menu" name="Hotel Management System" sequence="10"/>
+        <menuitem name="Hotels" id="hotels_menu" parent="hotels_root_menu" action="hotels_act_window"/>
+
+    </data>
+</odoo>
+

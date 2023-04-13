@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="rooms_form_view" model="ir.ui.view">
+            <field name="name">projekti.rooms.form</field>
+            <field name="model">projekti.rooms</field>
+            <field name="arch" type="xml">
+                <form string="Rooms">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="room_no"/>
+                            <h1>
+                                <field name="room_no" placeholder="Room Number"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="price"/>
+                                <field name="capacity"/>
+                            </group>
+                            <group>
+                                <field name="status"/>
+                                <field name="type_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="rooms_tree_view" model="ir.ui.view">
+            <field name="name">projekti.rooms.tree</field>
+            <field name="model">projekti.rooms</field>
+            <field name="arch" type="xml">
+                <tree string="Rooms">
+                    <field name="room_no"/>
+                    <field name="price"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="rooms_search_view" model="ir.ui.view">
+            <field name="name">projekti.rooms.search</field>
+            <field name="model">projekti.rooms</field>
+            <field name="arch" type="xml">
+                <search string="Rooms">
+                    <field name="price"/>
+                    <field name="capacity"/>
+                    <field name="room_no"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="rooms_act_window" model="ir.actions.act_window">
+            <field name="name">Rooms</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">projekti.rooms</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Rooms.
+                </p>
+            </field>
+        </record>
+
+
+<!--        <menuitem name="Rooms" id="rooms_menu" parent="hotels_root_menu" action="rooms_act_window"/>-->
+
+    </data>
+</odoo>

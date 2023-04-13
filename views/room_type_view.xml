@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="room_type_form_view" model="ir.ui.view">
+            <field name="name">projekti.room.type.form</field>
+            <field name="model">projekti.room.type</field>
+            <field name="arch" type="xml">
+                <form string="Room Type">
+                    <sheet>
+<!--                        <div class="oe_title">-->
+<!--                            <label for="example_title"/>-->
+<!--                            <h1>-->
+<!--                                <field name="example_title" placeholder="Title"/>-->
+<!--                            </h1>-->
+<!--                        </div>-->
+                        <group>
+                            <group>
+                                <field name="no_bedrooms"/>
+                                <field name="no_beds"/>
+                            </group>
+                            <group>
+                                <field name="floor"/>
+                                <field name="view"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="room_type_tree_view" model="ir.ui.view">
+            <field name="name">projekti.room.type.tree</field>
+            <field name="model">projekti.room.type</field>
+            <field name="arch" type="xml">
+                <tree string="Room Type">
+                    <field name="floor"/>
+                    <field name="view"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="room_type_search_view" model="ir.ui.view">
+            <field name="name">projekti.room.type.search</field>
+            <field name="model">projekti.room.type</field>
+            <field name="arch" type="xml">
+                <search string="Room Type">
+                    <field name="floor"/>
+                    <field name="view"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="room_type_act_window" model="ir.actions.act_window">
+            <field name="name">Room Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">projekti.room.type</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Room Type.
+                </p>
+            </field>
+        </record>
+
+<!--        <menuitem name="Room Type" id="room_type_menu" parent="rooms_menu" action="room_type_act_window"/>-->
+
+    </data>
+</odoo>
